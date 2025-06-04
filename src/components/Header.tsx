@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,10 @@ const Header = () => {
   }, []);
 
   const navItems = ['Services', 'About', 'Technologies', 'Case Studies', 'Contact'];
+  const pages = [
+    { name: 'Home', path: '/' },
+    { name: 'Banking', path: '/banking' }
+  ];
 
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -22,17 +28,30 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-teal-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xl">T</span>
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
               TechFlow
             </span>
-          </div>
+          </Link>
 
-          <nav className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
+          <nav className="hidden md:flex items-center space-x-8">
+            {pages.map((page) => (
+              <Link
+                key={page.name}
+                to={page.path}
+                className={`font-medium transition-colors duration-200 ${
+                  location.pathname === page.path
+                    ? 'text-blue-600'
+                    : 'text-gray-700 hover:text-blue-600'
+                }`}
+              >
+                {page.name}
+              </Link>
+            ))}
+            {location.pathname === '/' && navItems.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(' ', '-')}`}
@@ -57,7 +76,21 @@ const Header = () => {
 
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 py-4 bg-white rounded-lg shadow-lg">
-            {navItems.map((item) => (
+            {pages.map((page) => (
+              <Link
+                key={page.name}
+                to={page.path}
+                className={`block px-4 py-2 transition-colors ${
+                  location.pathname === page.path
+                    ? 'text-blue-600 font-semibold'
+                    : 'text-gray-700 hover:text-blue-600'
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {page.name}
+              </Link>
+            ))}
+            {location.pathname === '/' && navItems.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(' ', '-')}`}
