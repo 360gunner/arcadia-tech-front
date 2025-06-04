@@ -19,7 +19,8 @@ const Header = () => {
   const navItems = ['Services', 'About', 'Technologies', 'Case Studies', 'Contact'];
   const pages = [
     { name: 'Home', path: '/' },
-    { name: 'Banking', path: '/banking' }
+    { name: 'Banking', path: '/banking' },
+    { name: 'Airlines', path: '/airlines' }
   ];
 
   return (
