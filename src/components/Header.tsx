@@ -2,11 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +19,12 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['Services', 'About', 'Technologies', 'Case Studies', 'Contact'];
+  const navItems = [t('services'), t('about'), t('technologies'), t('caseStudies'), t('contact')];
   const pages = [
-    { name: 'Home', path: '/' },
-    { name: 'Banking', path: '/banking' },
-    { name: 'Airlines', path: '/airlines' }
+    { name: t('home'), path: '/' },
+    { name: t('banking'), path: '/banking' },
+    { name: t('airlines'), path: '/airlines' },
+    { name: t('tvBroadcasting'), path: '/tv-broadcasting' }
   ];
 
   return (
@@ -63,9 +67,12 @@ const Header = () => {
             ))}
           </nav>
 
-          <button className="hidden md:block bg-gradient-to-r from-blue-600 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 transform hover:scale-105">
-            Get Started
-          </button>
+          <div className="hidden md:flex items-center space-x-4">
+            <LanguageSelector />
+            <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+              {t('getStarted')}
+            </button>
+          </div>
 
           <button 
             className="md:hidden"
@@ -101,8 +108,11 @@ const Header = () => {
                 {item}
               </a>
             ))}
+            <div className="px-4 py-2">
+              <LanguageSelector />
+            </div>
             <button className="w-full mt-4 mx-4 bg-gradient-to-r from-blue-600 to-teal-500 text-white px-6 py-2 rounded-full">
-              Get Started
+              {t('getStarted')}
             </button>
           </div>
         )}
