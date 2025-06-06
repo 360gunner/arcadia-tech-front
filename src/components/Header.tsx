@@ -1,123 +1,169 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
-import { useLanguage } from '../contexts/LanguageContext';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 
-const Header = () => {
+type NavItem = {
+  name: string;
+  path: string;
+  subItems?: NavItem[];
+};
+
+// Navigation items with translation keys
+const navItems: NavItem[] = [
+  { name: 'home', path: '/' },
+  { name: 'products', path: '/products' },
+  { name: 'about', path: '/about' },
+  { name: 'contact', path: '/contact' },
+];
+
+const NavItem: React.FC<{ 
+  item: NavItem; 
+  isActive: boolean; 
+  onClick: () => void;
+  t: (key: string) => string;
+}> = ({ item, isActive, onClick, t }) => {
+  return (
+    <Link
+      to={item.path}
+      className={`px-3 py-2 rounded-md text-sm font-medium ${
+        isActive
+          ? 'bg-blue-600 text-white'
+          : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+      }`}
+      onClick={onClick}
+    >
+      {t(item.name)}
+    </Link>
+  );
+};
+
+const MobileMenu: React.FC<{
+  isOpen: boolean;
+  onClose: () => void;
+  navItems: NavItem[];
+  currentPath: string;
+  onNavClick: () => void;
+  t: (key: string) => string;
+}> = ({ isOpen, onClose, navItems, currentPath, onNavClick, t }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="md:hidden bg-white shadow-lg rounded-b-lg">
+      <div className="px-2 pt-2 pb-4 space-y-1">
+        {navItems.map((item) => (
+          <NavItem
+            key={item.path}
+            item={item}
+            isActive={currentPath === item.path}
+            onClick={() => {
+              onNavClick();
+              onClose();
+            }}
+            t={t}
+          />
+        ))}
+        <div className="px-3 py-2">
+          <LanguageSelector />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Header: React.FC = () => {
+  const { t, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { t } = useLanguage();
-
+  const navigate = useNavigate();
+  
+  // Debug language changes
+  useEffect(() => {
+    console.log('Header language changed to:', language);
+  }, [language]);
+  
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrolled = window.scrollY > 10;
+      if (scrolled !== isScrolled) {
+        setIsScrolled(scrolled);
+      }
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [t('services'), t('about'), t('technologies'), t('caseStudies'), t('contact')];
-  const pages = [
-    { name: t('home'), path: '/' },
-    { name: t('banking'), path: '/banking' },
-    { name: t('airlines'), path: '/airlines' },
-    { name: t('tvBroadcasting'), path: '/tv-broadcasting' }
-  ];
+  }, [isScrolled]);
+  
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+  
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+  
+  const handleNavClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white shadow-md' : 'bg-white md:bg-opacity-90'
     }`}>
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-teal-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">T</span>
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
-              TechFlow
-            </span>
-          </Link>
-
-          <nav className="hidden md:flex items-center space-x-8">
-            {pages.map((page) => (
-              <Link
-                key={page.name}
-                to={page.path}
-                className={`font-medium transition-colors duration-200 ${
-                  location.pathname === page.path
-                    ? 'text-blue-600'
-                    : 'text-gray-700 hover:text-blue-600'
-                }`}
-              >
-                {page.name}
-              </Link>
-            ))}
-            {location.pathname === '/' && navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden md:flex items-center space-x-4">
-            <LanguageSelector />
-            <button className="bg-gradient-to-r from-blue-600 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 transform hover:scale-105">
-              {t('getStarted')}
-            </button>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link to="/" className="text-xl font-bold text-blue-600">
+              Lynx
+            </Link>
           </div>
-
-          <button 
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 bg-white rounded-lg shadow-lg">
-            {pages.map((page) => (
-              <Link
-                key={page.name}
-                to={page.path}
-                className={`block px-4 py-2 transition-colors ${
-                  location.pathname === page.path
-                    ? 'text-blue-600 font-semibold'
-                    : 'text-gray-700 hover:text-blue-600'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {page.name}
-              </Link>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            {navItems.map((item) => (
+              <NavItem
+                key={item.path}
+                item={item}
+                isActive={location.pathname === item.path}
+                onClick={handleNavClick}
+                t={t}
+              />
             ))}
-            {location.pathname === '/' && navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
-                className="block px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-            <div className="px-4 py-2">
+            <div className="ml-4">
               <LanguageSelector />
             </div>
-            <button className="w-full mt-4 mx-4 bg-gradient-to-r from-blue-600 to-teal-500 text-white px-6 py-2 rounded-full">
-              {t('getStarted')}
+          </div>
+          
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={toggleMobileMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              {isMobileMenuOpen ? (
+                <X className="block h-6 w-6" />
+              ) : (
+                <Menu className="block h-6 w-6" />
+              )}
             </button>
           </div>
-        )}
+        </div>
       </div>
-    </header>
+
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={closeMobileMenu}
+        navItems={navItems}
+        currentPath={location.pathname}
+        onNavClick={handleNavClick}
+        t={t}
+      />
+    </nav>
   );
 };
 
