@@ -1,7 +1,7 @@
 import { BrainCircuit, Bot, Code2, Shield, Zap, BarChart } from 'lucide-react';
 import ProductPageTemplate from '../../components/ProductPageTemplate';
 
-export default function LynxAi() {
+export default function TetraAi() {
   const features = [
     {
       title: 'Advanced AI Models',
@@ -37,7 +37,7 @@ export default function LynxAi() {
 
   return (
     <ProductPageTemplate
-      title="Lynx AI"
+      title="TETRA AI"
       description="Powerful artificial intelligence solutions that help businesses automate processes, gain insights, and deliver exceptional customer experiences."
       features={features}
       ctaText="Explore AI Solutions"
@@ -47,7 +47,7 @@ export default function LynxAi() {
           <h2 className="text-2xl font-semibold mb-6">Transform Your Business with AI</h2>
           <div className="prose max-w-none">
             <p className="mb-6">
-              Lynx AI provides cutting-edge artificial intelligence solutions that help businesses of all sizes 
+              TETRA AI provides cutting-edge artificial intelligence solutions that help businesses of all sizes 
               leverage the power of machine learning and natural language processing. Our platform makes it easy to 
               integrate AI capabilities into your existing workflows and applications.
             </p>
@@ -110,7 +110,7 @@ export default function LynxAi() {
             </div>
             
             <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
-              <h3 className="text-lg font-semibold mb-3">Get Started with Lynx AI</h3>
+              <h3 className="text-lg font-semibold mb-3">Get Started with TETRA AI</h3>
               <p className="mb-4">
                 Ready to harness the power of AI for your business? Our team of experts is here to help you 
                 implement the right solutions for your specific needs.

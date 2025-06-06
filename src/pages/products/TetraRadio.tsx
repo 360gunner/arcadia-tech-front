@@ -1,7 +1,7 @@
 import { Radio, Headphones, Mic2, Globe, Music, Podcast } from 'lucide-react';
 import ProductPageTemplate from '../../components/ProductPageTemplate';
 
-export default function LynxRadio() {
+export default function TetraRadio() {
   const features = [
     {
       title: 'Live Radio Streaming',
@@ -37,16 +37,16 @@ export default function LynxRadio() {
 
   return (
     <ProductPageTemplate
-      title="Lynx Radio"
+      title="TETRA Radio"
       description="A complete radio broadcasting solution that gives you everything you need to start, grow, and monetize your online radio station or podcast."
       features={features}
       ctaText="Start Broadcasting"
     >
       <div className="mt-12 bg-blue-50 p-8 rounded-xl">
-        <h2 className="text-2xl font-semibold mb-6">Why Broadcast with Lynx Radio?</h2>
+        <h2 className="text-2xl font-semibold mb-6">Why Broadcast with TETRA Radio?</h2>
         <div className="prose max-w-none">
           <p className="mb-4">
-            Lynx Radio provides professional-grade tools for radio broadcasters of all sizes. Our platform is trusted by 
+            TETRA Radio provides professional-grade tools for radio broadcasters of all sizes. Our platform is trusted by 
             thousands of broadcasters worldwide to deliver exceptional audio experiences to their listeners.
           </p>
           <ul className="list-disc pl-6 space-y-2 mb-6">
@@ -57,7 +57,7 @@ export default function LynxRadio() {
             <li>Custom mobile apps for your brand</li>
           </ul>
           <p>
-            Whether you're starting a new station or moving from another provider, Lynx Radio makes it easy to share 
+            Whether you're starting a new station or moving from another provider, TETRA Radio makes it easy to share 
             your voice with the world.
           </p>
         </div>

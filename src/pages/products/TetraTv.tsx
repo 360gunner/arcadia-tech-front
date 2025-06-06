@@ -1,7 +1,7 @@
 import { Monitor, Play, Users, Tv2, Smartphone, Globe } from 'lucide-react';
 import ProductPageTemplate from '../../components/ProductPageTemplate';
 
-export default function LynxTv() {
+export default function TetraTv() {
   const features = [
     {
       title: 'Live TV Streaming',
@@ -37,16 +37,16 @@ export default function LynxTv() {
 
   return (
     <ProductPageTemplate
-      title="Lynx TV"
+      title="TETRA TV"
       description="A complete end-to-end solution for broadcasting live and on-demand video content to global audiences with enterprise-grade reliability and quality."
       features={features}
       ctaText="Request a Demo"
     >
       <div className="mt-12 bg-gray-50 p-8 rounded-xl">
-        <h2 className="text-2xl font-semibold mb-6">Why Choose Lynx TV?</h2>
+        <h2 className="text-2xl font-semibold mb-6">Why Choose TETRA TV?</h2>
         <div className="prose max-w-none">
           <p className="mb-4">
-            Lynx TV powers some of the largest broadcasters and content creators with its robust, scalable platform. 
+            TETRA TV powers some of the largest broadcasters and content creators with its robust, scalable platform. 
             Whether you're a major network or an independent creator, our technology delivers your content with 
             exceptional quality and reliability.
           </p>
@@ -58,7 +58,7 @@ export default function LynxTv() {
             <li>24/7 technical support</li>
           </ul>
           <p>
-            Get started today and join the future of television broadcasting with Lynx TV's cutting-edge platform.
+            Get started today and join the future of television broadcasting with TETRA TV's cutting-edge platform.
           </p>
         </div>
       </div>

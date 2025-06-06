@@ -37,7 +37,7 @@ export default function CloudGaming() {
 
   return (
     <ProductPageTemplate
-      title="Lynx Cloud Gaming"
+      title="TETRA Cloud Gaming"
       description="Play the latest games instantly on any device with our high-performance cloud gaming platform."
       features={features}
       ctaText="Start Playing"
@@ -46,7 +46,7 @@ export default function CloudGaming() {
         <h2 className="text-2xl font-semibold mb-6">Game Without Limits</h2>
         <div className="prose max-w-none">
           <p className="mb-4">
-            Lynx Cloud Gaming brings console and PC gaming to any screen. Our powerful cloud servers handle the 
+            TETRA Cloud Gaming brings console and PC gaming to any screen. Our powerful cloud servers handle the 
             processing, while you enjoy high-quality gaming on your phone, tablet, TV, or computer. No downloads, 
             no updates, no storage limits - just instant gaming.
           </p>

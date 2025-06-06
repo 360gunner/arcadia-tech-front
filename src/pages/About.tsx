@@ -8,7 +8,7 @@ export default function About() {
     >
       <div className="prose prose-lg max-w-none">
         <h2>Our Story</h2>
-        <p>Lynx was founded with a vision to revolutionize technology services across Africa. Our journey began with a small team of passionate technologists committed to delivering innovative solutions tailored to the African market.</p>
+        <p>TETRACODE was founded with a vision to revolutionize technology services across Africa. Our journey began with a small team of passionate technologists committed to delivering innovative solutions tailored to the African market.</p>
         
         <h2>Our Mission</h2>
         <p>To empower businesses and individuals across Africa with cutting-edge technology solutions that drive growth, innovation, and digital transformation.</p>

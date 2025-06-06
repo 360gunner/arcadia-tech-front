@@ -49,7 +49,7 @@ export default function Developers() {
       icon: <GitBranch className="h-5 w-5" />,
       title: 'Open Source Projects',
       description: 'Contribute to our open source projects and libraries.',
-      link: 'https://github.com/lynx-tech',
+      link: 'https://github.com/tetracode-tech',
       external: true,
     },
     {
@@ -69,7 +69,7 @@ export default function Developers() {
   return (
     <PageTemplate
       title="Developer Resources"
-      description="Everything you need to build amazing applications with Lynx technology."
+      description="Everything you need to build amazing applications with TETRACODE technology."
     >
       <div className="space-y-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -130,9 +130,9 @@ export default function Developers() {
 
         <div className="mt-8 bg-primary/5 p-8 rounded-xl border border-primary/10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-semibold mb-4">Build with Lynx</h2>
+            <h2 className="text-2xl font-semibold mb-4">Build with TETRACODE</h2>
             <p className="text-muted-foreground mb-6">
-              Ready to start building? Our developer tools and APIs make it easy to integrate Lynx technology
+              Ready to start building? Our developer tools and APIs make it easy to integrate TETRACODE technology
               into your applications.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

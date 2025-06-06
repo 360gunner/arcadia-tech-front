@@ -37,16 +37,16 @@ export default function TaskManager() {
 
   return (
     <ProductPageTemplate
-      title="Lynx Task Manager"
+      title="TETRA Task Manager"
       description="A powerful task and project management tool that helps teams organize, track, and accomplish their work efficiently."
       features={features}
       ctaText="Start Managing Tasks"
     >
       <div className="mt-12 bg-blue-50 p-8 rounded-xl">
-        <h2 className="text-2xl font-semibold mb-6">Why Use Lynx Task Manager?</h2>
+        <h2 className="text-2xl font-semibold mb-6">Why Use TETRA Task Manager?</h2>
         <div className="prose max-w-none">
           <p className="mb-4">
-            Lynx Task Manager is designed to help teams of all sizes stay organized and productive. 
+            TETRA Task Manager is designed to help teams of all sizes stay organized and productive. 
             With intuitive features and a clean interface, you can focus on getting work done without 
             the overhead of complex project management tools.
           </p>
@@ -111,7 +111,7 @@ export default function TaskManager() {
           <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
             <h3 className="text-lg font-semibold mb-3">Ready to Boost Your Team's Productivity?</h3>
             <p className="mb-4">
-              Try Lynx Task Manager for free and see how it can transform the way your team works.
+              Try TETRA Task Manager for free and see how it can transform the way your team works.
             </p>
             <div className="flex flex-wrap gap-4">
               <a

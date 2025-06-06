@@ -1,7 +1,7 @@
 import { Server, Cpu, Database, Shield, Zap, GitBranch } from 'lucide-react';
 import ProductPageTemplate from '../../components/ProductPageTemplate';
 
-export default function LynxCloud() {
+export default function TetraCloud() {
   const features = [
     {
       title: 'Elastic Compute',
@@ -37,17 +37,17 @@ export default function LynxCloud() {
 
   return (
     <ProductPageTemplate
-      title="Lynx Cloud"
+      title="TETRA Cloud"
       description="A powerful, secure, and scalable cloud computing platform that provides the infrastructure and tools to build, deploy, and scale applications with ease."
       features={features}
       ctaText="Start Building in the Cloud"
     >
       <div className="mt-12 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6">Why Choose Lynx Cloud?</h2>
+          <h2 className="text-2xl font-semibold mb-6">Why Choose TETRA Cloud?</h2>
           <div className="prose max-w-none">
             <p className="mb-4">
-              Lynx Cloud provides a comprehensive suite of cloud services designed to help businesses of all sizes 
+              TETRA Cloud provides a comprehensive suite of cloud services designed to help businesses of all sizes 
               innovate faster, reduce IT costs, and scale efficiently. Our platform is built on a foundation of 
               security, reliability, and performance.
             </p>
@@ -101,7 +101,7 @@ export default function LynxCloud() {
             <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
               <h3 className="text-lg font-semibold mb-3">Getting Started</h3>
               <p className="mb-4">
-                Sign up today and receive $200 in free credits to explore Lynx Cloud. No credit card required to get started.
+                Sign up today and receive $200 in free credits to explore TETRA Cloud. No credit card required to get started.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a

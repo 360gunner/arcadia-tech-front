@@ -30,13 +30,13 @@ export default function Partners() {
     {
       icon: <Handshake className="h-5 w-5" />,
       title: 'Reseller Program',
-      description: 'Resell Lynx products and services to your customers.',
+      description: 'Resell TETRACODE products and services to your customers.',
       link: '/partners/reseller',
     },
     {
       icon: <GitPullRequest className="h-5 w-5" />,
       title: 'Integration Partners',
-      description: 'Integrate your solutions with Lynx technology.',
+      description: 'Integrate your solutions with TETRACODE technology.',
       link: '/partners/integration',
     },
     {
@@ -48,13 +48,13 @@ export default function Partners() {
     {
       icon: <BarChart className="h-5 w-5" />,
       title: 'Channel Partners',
-      description: 'Distribute and implement Lynx solutions.',
+      description: 'Distribute and implement TETRACODE solutions.',
       link: '/partners/channel',
     },
     {
       icon: <Globe className="h-5 w-5" />,
       title: 'Global System Integrators',
-      description: 'Deliver comprehensive solutions with Lynx technology.',
+      description: 'Deliver comprehensive solutions with TETRACODE technology.',
       link: '/partners/integrators',
     },
     {
@@ -67,13 +67,13 @@ export default function Partners() {
 
   return (
     <PageTemplate
-      title="Partner with Lynx"
-      description="Join our partner ecosystem and grow your business with Lynx technology solutions."
+      title="Partner with TETRACODE"
+      description="Join our partner ecosystem and grow your business with TETRACODE technology solutions."
     >
       <div className="space-y-12">
         <div className="prose prose-lg max-w-none">
           <p className="text-lg text-muted-foreground">
-            At Lynx, we believe in the power of partnerships. Our partner ecosystem is designed to help you
+            At TETRACODE, we believe in the power of partnerships. Our partner ecosystem is designed to help you
             grow your business, expand your offerings, and deliver exceptional value to your customers.
           </p>
         </div>
@@ -89,7 +89,7 @@ export default function Partners() {
 
         <div className="bg-muted/50 p-8 rounded-xl">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold mb-6">Why Partner with Lynx?</h2>
+            <h2 className="text-2xl font-semibold mb-6">Why Partner with TETRACODE?</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-medium mb-3">Grow Your Business</h3>
@@ -143,7 +143,7 @@ export default function Partners() {
 
         <div className="mt-8 bg-primary/5 p-8 rounded-xl border border-primary/10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-semibold mb-4">Ready to Partner with Lynx?</h2>
+            <h2 className="text-2xl font-semibold mb-4">Ready to Partner with TETRACODE?</h2>
             <p className="text-muted-foreground mb-6">
               Join our growing network of partners and start delivering innovative solutions to your customers.
             </p>

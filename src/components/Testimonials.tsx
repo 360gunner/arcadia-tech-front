@@ -7,7 +7,7 @@ const Testimonials = () => {
     {
       name: "Sarah Johnson",
       role: "CTO, Global Banking Corp",
-      content: "TechFlow transformed our entire banking infrastructure. Their expertise in core banking systems is unmatched. We've seen 50% improvement in transaction processing speed.",
+      content: "TETRACODE transformed our entire banking infrastructure. Their expertise in core banking systems is unmatched. We've seen 50% improvement in transaction processing speed.",
       rating: 5,
       company: "Fortune 500 Bank"
     },
@@ -21,7 +21,7 @@ const Testimonials = () => {
     {
       name: "Emma Rodriguez",
       role: "Head of Digital, AirLink Airlines",
-      content: "Our airline operations are now completely digitized thanks to TechFlow. The system they built increased our operational efficiency by 30%.",
+      content: "Our airline operations are now completely digitized thanks to TETRACODE. The system they built increased our operational efficiency by 30%.",
       rating: 5,
       company: "International Airline"
     }

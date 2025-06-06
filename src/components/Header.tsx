@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSelector from './LanguageSelector';
+import tetracodeLogo from '@/../public/tetracode.png';
 
 type NavItem = {
   name: string;
@@ -10,12 +11,144 @@ type NavItem = {
   subItems?: NavItem[];
 };
 
-// Navigation items with translation keys
+// Navigation items with translation keys and submenus
 const navItems: NavItem[] = [
-  { name: 'home', path: '/' },
-  { name: 'products', path: '/products' },
-  { name: 'about', path: '/about' },
-  { name: 'contact', path: '/contact' },
+  { 
+    name: 'home', 
+    path: '/',
+    subItems: [
+      { name: 'Overview', path: '/overview' },
+      { name: 'Mission & Vision', path: '/mission-vision' },
+      { name: 'Leadership Team', path: '/leadership' },
+      { name: 'News & Press', path: '/news' }
+    ]
+  },
+  { 
+    name: 'products', 
+    path: '/products',
+    subItems: [
+      { 
+        name: '📺 Broadcasting & Media', 
+        path: '/products/broadcasting-media',
+        subItems: [
+          { name: 'TETRACODE TV (Live + On-demand)', path: '/products/tv' },
+          { name: 'TETRACODE Radio', path: '/products/radio' },
+          { name: 'Media Player (Cross-platform)', path: '/products/media-player' },
+          { name: 'Digital Content Distribution', path: '/products/content-distribution' },
+          { name: 'Creator Monetization Tools', path: '/products/monetization-tools' }
+        ]
+      },
+      { 
+        name: '🛫 Aviation & Aerospace', 
+        path: '/products/aviation',
+        subItems: [
+          { name: 'Drone & UAV Services', path: '/products/drone-services' },
+          { name: 'Flight Management Software', path: '/products/flight-software' },
+          { name: 'Smart Airport Tech', path: '/products/airport-tech' },
+          { name: 'TETRACODE Air Charter & Logistics', path: '/products/air-charter' }
+        ]
+      },
+      { 
+        name: '🧑‍💼 SaaS & Communication', 
+        path: '/products/saas',
+        subItems: [
+          { name: 'TETRACODE Meet (Google Meet Alternative)', path: '/products/meet' },
+          { name: 'TETRACODE Office Suite (Docs, Sheets, etc.)', path: '/products/office' },
+          { name: 'TETRACODE Mail (Secure Email)', path: '/products/mail' },
+          { name: 'Task & Project Manager', path: '/products/task-manager' }
+        ]
+      },
+      { 
+        name: '💸 Fintech & Banking', 
+        path: '/products/fintech',
+        subItems: [
+          { name: 'Mobix (Super App)', path: '/products/mobix' },
+          { name: 'TETRACODE Core Banking (Open Banking APIs)', path: '/products/core-banking' }
+        ]
+      },
+      { 
+        name: '☁️ Cloud & Hosting', 
+        path: '/products/cloud',
+        subItems: [
+          { 
+            name: 'TETRACODE Cloud (IaaS/PaaS) EC2', 
+            path: '/products/cloud/iaas',
+            subItems: [
+              { name: 'Web Hosting', path: '/products/cloud/web-hosting' },
+              { name: 'Cloud Storage EB5', path: '/products/cloud/storage' }
+            ]
+          },
+          { name: 'CDN Services', path: '/products/cdn' }
+        ]
+      },
+      { 
+        name: '🎮 Gaming & Entertainment', 
+        path: '/products/gaming',
+        subItems: [
+          { name: 'TETRACODE Cloud Gaming', path: '/products/cloud-gaming' },
+          { name: 'Live Mobile Gaming Hub', path: '/products/gaming-hub' },
+          { name: 'Developer Tools for Games', path: '/products/game-dev-tools' }
+        ]
+      },
+      { 
+        name: '🤖 AI & Innovation', 
+        path: '/products/ai',
+        subItems: [
+          { 
+            name: 'TETRACODE AI (Cloud AI Services)', 
+            path: '/products/ai/cloud',
+            subItems: [
+              { name: 'Machine Learning APIs', path: '/products/ai/ml-apis' },
+              { name: 'Text & Image Recognition', path: '/products/ai/recognition' }
+            ]
+          },
+          { name: 'Chatbot Platform', path: '/products/ai/chatbot' },
+          { name: 'Voice + Translation APIs', path: '/products/ai/voice-translation' }
+        ]
+      },
+      { 
+        name: '📱 Mobile & Super Apps', 
+        path: '/products/mobile',
+        subItems: [
+          { name: 'TETRACODE App Store', path: '/products/app-store' },
+          { name: 'Developer SDKs', path: '/products/developer-sdks' }
+        ]
+      }
+    ]
+  },
+  { 
+    name: 'solutions', 
+    path: '/solutions',
+    subItems: [
+      { name: 'For Individuals', path: '/solutions/individuals' },
+      { name: 'For Businesses', path: '/solutions/businesses' },
+      { name: 'For Governments', path: '/solutions/governments' },
+      { name: 'For Developers', path: '/solutions/developers' },
+      { name: 'For Startups', path: '/solutions/startups' },
+      { name: 'For Schools & Universities', path: '/solutions/education' }
+    ]
+  },
+  { 
+    name: 'about', 
+    path: '/about',
+    subItems: [
+      { name: 'Our Story', path: '/about/story' },
+      { name: 'Why Africa', path: '/about/africa' },
+      { name: 'Team & Careers', path: '/careers' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'Media Kit', path: '/press' }
+    ]
+  },
+  { 
+    name: 'contact', 
+    path: '/contact',
+    subItems: [
+      { name: 'Get in Touch', path: '/contact' },
+      { name: 'Find a Local Office', path: '/contact/offices' },
+      { name: 'Request a Demo', path: '/demo' },
+      { name: 'Feedback Form', path: '/feedback' }
+    ]
+  }
 ];
 
 const NavItem: React.FC<{ 
@@ -23,19 +156,79 @@ const NavItem: React.FC<{
   isActive: boolean; 
   onClick: () => void;
   t: (key: string) => string;
-}> = ({ item, isActive, onClick, t }) => {
+  isMobile?: boolean;
+}> = ({ item, isActive, onClick, t, isMobile = false }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const hasSubItems = item.subItems && item.subItems.length > 0;
+  const itemRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (itemRef.current && !itemRef.current.contains(event.target as Node)) {
+        setIsHovered(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <Link
-      to={item.path}
-      className={`px-3 py-2 rounded-md text-sm font-medium ${
-        isActive
-          ? 'bg-blue-600 text-white'
-          : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-      }`}
-      onClick={onClick}
-    >
-      {t(item.name)}
-    </Link>
+    <div className="relative" ref={itemRef}>
+      <div 
+        className={`flex items-center ${hasSubItems ? 'cursor-default' : ''}`}
+        onMouseEnter={() => !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isMobile && setIsHovered(false)}
+      >
+        <Link
+          to={item.path}
+          className={`px-4 py-2 rounded-md text-sm font-medium flex items-center ${
+            isActive
+              ? 'bg-blue-600 text-white'
+              : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+          }`}
+          onClick={() => {
+            onClick();
+            if (!hasSubItems) setIsHovered(false);
+          }}
+        >
+          {t(item.name)}
+          {hasSubItems && (
+            <ChevronDown 
+              className={`ml-1 h-4 w-4 transition-transform duration-200 ${isHovered ? 'transform rotate-180' : ''}`} 
+            />
+          )}
+        </Link>
+      </div>
+      
+      {hasSubItems && (isHovered || isMobile) && (
+        <div 
+          className={`absolute left-0 mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 ${
+            isMobile ? 'relative w-full mt-0 ml-4' : 'py-1'
+          }`}
+          onMouseEnter={() => !isMobile && setIsHovered(true)}
+          onMouseLeave={() => !isMobile && setIsHovered(false)}
+        >
+          <div className="py-1">
+            {item.subItems?.map((subItem, index) => (
+              <Link
+                key={index}
+                to={subItem.path}
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                onClick={() => {
+                  onClick();
+                  setIsHovered(false);
+                }}
+              >
+                {t(subItem.name)}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
@@ -46,7 +239,9 @@ const MobileMenu: React.FC<{
   currentPath: string;
   onNavClick: () => void;
   t: (key: string) => string;
-}> = ({ isOpen, onClose, navItems, currentPath, onNavClick, t }) => {
+  theme: 'light' | 'dark' | 'system';
+  onThemeToggle: () => void;
+}> = ({ isOpen, onClose, navItems, currentPath, onNavClick, t, theme, onThemeToggle }) => {
   if (!isOpen) return null;
 
   return (
@@ -66,13 +261,29 @@ const MobileMenu: React.FC<{
         ))}
         <div className="px-3 py-2">
           <LanguageSelector />
+          <button
+            onClick={onThemeToggle}
+            className="p-2 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  theme: 'light' | 'dark' | 'system';
+  onThemeToggle: () => void;
+};
+
+const Header: React.FC<HeaderProps> = ({ theme, onThemeToggle }) => {
   const { t, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -116,8 +327,12 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold text-blue-600">
-              Lynx
+            <Link to="/" className="flex items-center">
+              <img 
+                src={tetracodeLogo} 
+                alt="TETRACODE" 
+                className="h-28 w-auto transition-all duration-300 hover:opacity-90" 
+              />
             </Link>
           </div>
           
@@ -134,9 +349,20 @@ const Header: React.FC = () => {
             ))}
             <div className="ml-4">
               <LanguageSelector />
+              <button
+                onClick={onThemeToggle}
+                className="hidden p-2 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {theme === 'dark' ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
+              </button>
             </div>
           </div>
-          
+
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
@@ -162,6 +388,8 @@ const Header: React.FC = () => {
         currentPath={location.pathname}
         onNavClick={handleNavClick}
         t={t}
+        theme={theme}
+        onThemeToggle={onThemeToggle}
       />
     </nav>
   );

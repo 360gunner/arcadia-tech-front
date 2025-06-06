@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Radio, Tv, Drone, Plane, Video, Mic, Mail, Server, Gamepad, Cpu, MessageSquare, Smartphone } from 'lucide-react';
+import { Radio, Tv, Plane, Video, Mic, Mail, Server, Gamepad, Cpu, MessageSquare, Smartphone } from 'lucide-react';
 import PageTemplate from '@/components/PageTemplate';
 
 type ProductCategory = {
@@ -22,17 +22,17 @@ export default function Products() {
       title: 'Broadcasting & Media',
       description: 'Innovative solutions for modern media distribution',
       icon: <Tv className="h-6 w-6" />,
-      link: '/products/lynx-tv',
+      link: '/products/tetra-tv',
       items: [
         {
-          title: 'Lynx TV',
+          title: 'TETRA TV',
           description: 'Next-generation IPTV platform',
-          link: '/products/lynx-tv'
+          link: '/products/tetra-tv'
         },
         {
-          title: 'Lynx Radio',
+          title: 'TETRA Radio',
           description: 'Digital radio broadcasting',
-          link: '/products/lynx-radio'
+          link: '/products/tetra-radio'
         },
         {
           title: 'Media Player',
@@ -85,12 +85,12 @@ export default function Products() {
       title: 'SaaS & Communication',
       description: 'Business productivity tools',
       icon: <Mail className="h-6 w-6" />,
-      link: '/products/lynx-meet',
+      link: '/products/tetra-meet',
       items: [
         {
-          title: 'Lynx Meet',
-          description: 'Video conferencing',
-          link: '/products/lynx-meet'
+          title: 'TETRA Meet',
+          description: 'Video conferencing solution',
+          link: '/products/tetra-meet'
         },
         {
           title: 'Office Suite',
@@ -98,9 +98,9 @@ export default function Products() {
           link: '/products/office-suite'
         },
         {
-          title: 'Lynx Mail',
-          description: 'Secure email solution',
-          link: '/products/lynx-mail'
+          title: 'TETRA Mail',
+          description: 'Secure email platform',
+          link: '/products/tetra-mail'
         },
         {
           title: 'Task Manager',
@@ -133,12 +133,12 @@ export default function Products() {
       title: 'Cloud & Hosting',
       description: 'Scalable infrastructure',
       icon: <Server className="h-6 w-6" />,
-      link: '/products/lynx-cloud',
+      link: '/products/tetra-cloud',
       items: [
         {
-          title: 'Lynx Cloud (IaaS/PaaS)',
-          description: 'Cloud infrastructure',
-          link: '/products/lynx-cloud'
+          title: 'TETRA Cloud (IaaS/PaaS)',
+          description: 'Cloud infrastructure services',
+          link: '/products/tetra-cloud'
         },
         {
           title: 'CDN Services',
@@ -176,12 +176,12 @@ export default function Products() {
       title: 'AI & Innovation',
       description: 'Artificial intelligence solutions',
       icon: <Cpu className="h-6 w-6" />,
-      link: '/products/lynx-ai',
+      link: '/products/tetra-ai',
       items: [
         {
-          title: 'Lynx AI',
-          description: 'AI platform',
-          link: '/products/lynx-ai'
+          title: 'TETRA AI',
+          description: 'Artificial intelligence platform',
+          link: '/products/tetra-ai'
         },
         {
           title: 'Chatbot Platform',

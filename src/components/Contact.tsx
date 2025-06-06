@@ -57,7 +57,7 @@ const Contact = () => {
             <div className="bg-gray-800 rounded-3xl p-8 space-y-4">
               <h4 className="text-xl font-semibold text-white">Contact Information</h4>
               <div className="space-y-3 text-gray-300">
-                <p>📧 hello@techflow.com</p>
+                <p>📧 hello@tetracode.com</p>
                 <p>📞 +1 (555) 123-4567</p>
                 <p>🌍 Global offices in 15+ countries</p>
               </div>

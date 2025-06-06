@@ -15,6 +15,7 @@ const translations: Translations = {
     english: 'English',
     french: 'Français',
     home: 'Home',
+    products: 'Products',
     about: 'About',
     contact: 'Contact',
     contactSales: 'Contact Sales',
@@ -23,13 +24,16 @@ const translations: Translations = {
     ourServices: 'Our Services',
     whyChooseUs: 'Why Choose Us',
     backToProducts: 'Back to Products',
-    login: 'Sign In'
+    login: 'Sign In',
+    companyName: 'TETRACODE',
+    companyTagline: 'Innovative Technology Solutions'
   },
   fr: {
     language: 'Langue',
     english: 'English',
     french: 'Français',
     home: 'Accueil',
+    products: 'Produits',
     about: 'À Propos',
     contact: 'Contact',
     contactSales: 'Ventes',
@@ -38,7 +42,9 @@ const translations: Translations = {
     ourServices: 'Nos Services',
     whyChooseUs: 'Pourquoi Nous Choisir',
     backToProducts: 'Retour aux Produits',
-    login: 'Connexion'
+    login: 'Connexion',
+    companyName: 'TETRACODE',
+    companyTagline: 'Solutions Technologiques Innovantes'
   }
 };
 

@@ -19,11 +19,11 @@ const About = () => {
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">
                 About
                 <span className="bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
-                  {" "}TechFlow
+                  {" "}TETRACODE
                 </span>
               </h2>
               <p className="text-xl text-gray-600 leading-relaxed mb-6">
-                For over 15 years, TechFlow has been at the forefront of enterprise technology innovation. 
+                For over 15 years, TETRACODE has been at the forefront of enterprise technology innovation. 
                 We've built our reputation on delivering mission-critical systems that power some of the 
                 world's largest financial institutions, broadcasters, and airlines.
               </p>

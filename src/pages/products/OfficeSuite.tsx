@@ -1,4 +1,4 @@
-import { FileText, Table, BarChart2, Presentation, FileSpreadsheet, Cloud } from 'lucide-react';
+import { FileText, Table, BarChart2, Presentation, FileSpreadsheet, Cloud, Users, Lock as LockIcon } from 'lucide-react';
 import ProductPageTemplate from '../../components/ProductPageTemplate';
 
 export default function OfficeSuite() {
@@ -37,16 +37,16 @@ export default function OfficeSuite() {
 
   return (
     <ProductPageTemplate
-      title="Lynx Office Suite"
+      title="TETRA Office Suite"
       description="A comprehensive office productivity suite with all the tools you need to create, edit, and collaborate on documents, spreadsheets, and presentations."
       features={features}
       ctaText="Get Started for Free"
     >
       <div className="mt-12 bg-blue-50 p-8 rounded-xl">
-        <h2 className="text-2xl font-semibold mb-6">Why Choose Lynx Office Suite?</h2>
+        <h2 className="text-2xl font-semibold mb-6">Why Choose TETRA Office Suite?</h2>
         <div className="prose max-w-none">
           <p className="mb-4">
-            Lynx Office Suite provides a powerful, yet easy-to-use set of productivity tools that help you work 
+            TETRA Office Suite provides a powerful, yet easy-to-use set of productivity tools that help you work 
             more efficiently. Whether you're a student, professional, or business, our suite has everything you 
             need to create professional documents, analyze data, and deliver impactful presentations.
           </p>
@@ -75,7 +75,7 @@ export default function OfficeSuite() {
                 </li>
                 <li className="flex items-start">
                   <div className="bg-blue-100 p-1 rounded-full mr-3 mt-0.5">
-                    <Lock className="h-4 w-4 text-blue-600" />
+                    <LockIcon className="h-4 w-4 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-medium">Enterprise Security</h4>
@@ -120,7 +120,7 @@ export default function OfficeSuite() {
           <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
             <h3 className="text-lg font-semibold mb-3">Ready to Get Started?</h3>
             <p className="mb-4">
-              Join millions of users who trust Lynx Office Suite for their productivity needs. 
+              Join millions of users who trust TETRA Office Suite for their productivity needs. 
               No credit card required to start your free trial.
             </p>
             <div className="flex flex-wrap gap-4">

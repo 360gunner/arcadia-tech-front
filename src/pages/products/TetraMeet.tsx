@@ -1,7 +1,7 @@
 import { Video, Users, Share2, MessageSquare, Lock, Zap } from 'lucide-react';
 import ProductPageTemplate from '../../components/ProductPageTemplate';
 
-export default function LynxMeet() {
+export default function TetraMeet() {
   const features = [
     {
       title: 'HD Video Conferencing',
@@ -37,16 +37,16 @@ export default function LynxMeet() {
 
   return (
     <ProductPageTemplate
-      title="Lynx Meet"
+      title="TETRA Meet"
       description="Enterprise-grade video conferencing solution for teams of all sizes, featuring crystal clear audio and video, screen sharing, and real-time collaboration tools."
       features={features}
       ctaText="Start Free Trial"
     >
       <div className="mt-12 bg-blue-50 p-8 rounded-xl">
-        <h2 className="text-2xl font-semibold mb-6">Why Choose Lynx Meet?</h2>
+        <h2 className="text-2xl font-semibold mb-6">Why Choose TETRA Meet?</h2>
         <div className="prose max-w-none">
           <p className="mb-4">
-            Lynx Meet is designed to bring teams together with reliable, high-quality video conferencing. 
+            TETRA Meet is designed to bring teams together with reliable, high-quality video conferencing. 
             Whether you're hosting a team stand-up, client presentation, or company-wide town hall, 
             our platform provides all the tools you need for effective remote collaboration.
           </p>
@@ -111,7 +111,7 @@ export default function LynxMeet() {
           <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
             <h3 className="text-lg font-semibold mb-3">Ready to Get Started?</h3>
             <p className="mb-4">
-              Try Lynx Meet for free and experience the future of video conferencing. No credit card required.
+              Try TETRA Meet for free and experience the future of video conferencing. No credit card required.
             </p>
             <div className="flex flex-wrap gap-4">
               <a

@@ -37,16 +37,16 @@ export default function MediaPlayer() {
 
   return (
     <ProductPageTemplate
-      title="Lynx Media Player"
+      title="TETRA Media Player"
       description="A powerful, customizable media player that delivers exceptional video and audio experiences across all devices and platforms."
       features={features}
       ctaText="Get Started"
     >
       <div className="mt-12 bg-purple-50 p-8 rounded-xl">
-        <h2 className="text-2xl font-semibold mb-6">Why Choose Lynx Media Player?</h2>
+        <h2 className="text-2xl font-semibold mb-6">Why Choose TETRA Media Player?</h2>
         <div className="prose max-w-none">
           <p className="mb-4">
-            The Lynx Media Player is engineered for performance, reliability, and the best possible user experience. 
+            The TETRA Media Player is engineered for performance, reliability, and the best possible user experience. 
             Whether you're a content creator, broadcaster, or business, our player provides the tools you need to 
             engage your audience with stunning media playback.
           </p>
@@ -59,7 +59,7 @@ export default function MediaPlayer() {
             <li>Accessibility features including closed captions and audio descriptions</li>
           </ul>
           <p>
-            Integrate the Lynx Media Player with your existing infrastructure using our comprehensive API and 
+            Integrate the TETRA Media Player with your existing infrastructure using our comprehensive API and 
             developer documentation, or use our no-code solutions to get started quickly.
           </p>
         </div>

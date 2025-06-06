@@ -51,14 +51,14 @@ export default function Support() {
     {
       icon: <MessageSquare className="h-5 w-5" />,
       title: 'Community Forum',
-      description: 'Connect with other users and get help from the Lynx community.',
+      description: 'Connect with other users and get help from the TETRACODE community.',
       link: '/community',
       linkText: 'Join Community',
     },
     {
       icon: <AlertCircle className="h-5 w-5" />,
       title: 'System Status',
-      description: 'Check the status of Lynx services and view incident reports.',
+      description: 'Check the status of TETRACODE services and view incident reports.',
       link: '/status',
       linkText: 'View Status',
     },

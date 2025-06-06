@@ -37,7 +37,7 @@ export default function AppStore() {
 
   const featuredApps = [
     { 
-      name: 'Lynx Mail', 
+      name: 'TETRA Mail', 
       category: 'Productivity', 
       rating: 4.8,
       icon: '📧',
@@ -51,38 +51,38 @@ export default function AppStore() {
       description: 'Powerful task management for teams.'
     },
     { 
-      name: 'Lynx Cloud', 
-      category: 'Cloud Storage', 
+      name: 'TETRA Cloud', 
+      category: 'Cloud', 
       rating: 4.9,
       icon: '☁️',
-      description: 'Secure cloud storage with automatic backup.'
+      description: 'Access your files from anywhere with secure cloud storage with automatic backup.'
     },
     { 
-      name: 'Lynx VPN', 
+      name: 'TETRA VPN', 
       category: 'Security', 
-      rating: 4.6,
-      icon: '🔒',
-      description: 'Browse securely and privately from anywhere.'
-    },
-    { 
-      name: 'Lynx Pay', 
-      category: 'Finance', 
-      rating: 4.8,
-      icon: '💳',
-      description: 'Fast and secure mobile payments.'
-    },
-    { 
-      name: 'Lynx Music', 
-      category: 'Entertainment', 
       rating: 4.7,
+      icon: '🔒',
+      description: 'Protect your privacy with our fast and secure VPN service.'
+    },
+    { 
+      name: 'TETRA Pay', 
+      category: 'Finance', 
+      rating: 4.6,
+      icon: '💳',
+      description: 'Simple, secure mobile payments and money transfers.'
+    },
+    { 
+      name: 'TETRA Music', 
+      category: 'Entertainment', 
+      rating: 4.8,
       icon: '🎵',
-      description: 'Stream millions of songs ad-free.'
+      description: 'Stream millions of songs ad-free with high quality audio.'
     },
   ];
 
   return (
     <ProductPageTemplate
-      title="Lynx App Store"
+      title="TETRA App Store"
       description="Discover and download the best apps for your devices. Safe, secure, and easy to use."
       features={features}
       ctaText="Browse Apps"
@@ -127,7 +127,7 @@ export default function AppStore() {
               <h3 className="text-lg font-semibold mb-3">For Developers</h3>
               <div className="bg-white p-5 rounded-lg border border-gray-200">
                 <p className="mb-4">
-                  Want to publish your app on Lynx App Store? Join our developer program and reach millions of users.
+                  Want to publish your app on TETRA App Store? Join our developer program and reach millions of users.
                 </p>
                 <ul className="space-y-2 mb-4">
                   <li className="flex items-center">
@@ -168,7 +168,7 @@ export default function AppStore() {
           <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
             <h3 className="text-lg font-semibold mb-3">Get the App</h3>
             <p className="mb-4">
-              Download the Lynx App Store app to discover and install apps on your mobile device.
+              Download the TETRA App Store app to discover and install apps on your mobile device.
             </p>
             <div className="flex flex-wrap gap-4">
               <button className="px-4 py-2 bg-black text-white rounded-md flex items-center">

@@ -1,52 +1,52 @@
-import { Mail, Shield, Search, Inbox, Clock, Zap } from 'lucide-react';
+import { Mail, Shield, ShieldOff, Search, Inbox, Clock, Zap, Lock } from 'lucide-react';
 import ProductPageTemplate from '../../components/ProductPageTemplate';
 
-export default function LynxMail() {
+export default function TetraMail() {
   const features = [
     {
       title: 'Secure Email',
       description: 'End-to-end encrypted email to keep your communications private and secure.',
-      icon: <Shield className="h-6 w-6" />
+      icon: <Shield size={24} />
     },
     {
       title: 'Smart Inbox',
       description: 'AI-powered organization that helps you focus on what matters most.',
-      icon: <Inbox className="h-6 w-6" />
+      icon: <Inbox size={24} />
     },
     {
       title: 'Advanced Search',
       description: 'Find any email, attachment, or conversation in seconds with powerful search capabilities.',
-      icon: <Search className="h-6 w-6" />
+      icon: <Search size={24} />
     },
     {
       title: 'Custom Domains',
       description: 'Use your own domain for a professional email address that matches your brand.',
-      icon: <Mail className="h-6 w-6" />
+      icon: <Mail size={24} />
     },
     {
       title: 'Scheduled Sending',
       description: 'Compose now, send later with scheduled email delivery.',
-      icon: <Clock className="h-6 w-6" />
+      icon: <Clock size={24} />
     },
     {
       title: 'Lightning Fast',
       description: 'Experience blazing fast email with our optimized infrastructure.',
-      icon: <Zap className="h-6 w-6" />
+      icon: <Zap size={24} />
     }
   ];
 
   return (
     <ProductPageTemplate
-      title="Lynx Mail"
+      title="TETRA Mail"
       description="A secure, private, and ad-free email service with powerful features to help you stay productive and in control of your communications."
       features={features}
       ctaText="Get Started"
     >
       <div className="mt-12 bg-blue-50 p-8 rounded-xl">
-        <h2 className="text-2xl font-semibold mb-6">Why Choose Lynx Mail?</h2>
+        <h2 className="text-2xl font-semibold mb-6">Why Choose TETRA Mail?</h2>
         <div className="prose max-w-none">
           <p className="mb-4">
-            Lynx Mail is built with privacy and security as our top priorities. Unlike other email providers that 
+            TETRA Mail is built with privacy and security as our top priorities. Unlike other email providers that 
             scan your emails to serve you ads, we believe your inbox should be a private space. Our end-to-end 
             encryption ensures that only you and your recipients can read your messages.
           </p>
@@ -57,7 +57,7 @@ export default function LynxMail() {
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <div className="bg-blue-100 p-1 rounded-full mr-3 mt-0.5">
-                    <Shield className="h-4 w-4 text-blue-600" />
+                    <Shield size={16} className="text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-medium">End-to-End Encryption</h4>
@@ -66,7 +66,7 @@ export default function LynxMail() {
                 </li>
                 <li className="flex items-start">
                   <div className="bg-blue-100 p-1 rounded-full mr-3 mt-0.5">
-                    <Lock className="h-4 w-4 text-blue-600" />
+                    <Lock size={16} className="text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-medium">Zero-Access Encryption</h4>
@@ -75,7 +75,7 @@ export default function LynxMail() {
                 </li>
                 <li className="flex items-start">
                   <div className="bg-blue-100 p-1 rounded-full mr-3 mt-0.5">
-                    <ShieldOff className="h-4 w-4 text-blue-600" />
+                    <ShieldOff size={16} className="text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-medium">No Tracking</h4>
@@ -111,7 +111,7 @@ export default function LynxMail() {
           <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
             <h3 className="text-lg font-semibold mb-3">Ready to Experience Better Email?</h3>
             <p className="mb-4">
-              Join thousands of users who have taken back control of their inbox with Lynx Mail.
+              Join thousands of users who have taken back control of their inbox with TETRA Mail.
             </p>
             <div className="flex flex-wrap gap-4">
               <a

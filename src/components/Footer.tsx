@@ -3,15 +3,19 @@ import { Facebook, Twitter, Linkedin, Instagram, Youtube, Github } from 'lucide-
 import { Link } from 'react-router-dom';
 import { useTranslation } from '@/contexts/LanguageContext';
 
-const Footer = () => {
+interface FooterProps {
+  theme: 'light' | 'dark' | 'system';
+}
+
+const Footer: React.FC<FooterProps> = ({ theme }) => {
   const { t } = useTranslation();
-  
+  const isDark = theme === 'dark' || (theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   const products = [
-    { name: 'Lynx TV', path: '/products/lynx-tv' },
-    { name: 'Lynx Radio', path: '/products/lynx-radio' },
+    { name: 'TETRA TV', path: '/products/tetra-tv' },
+    { name: 'TETRA Radio', path: '/products/tetra-radio' },
     { name: 'Media Player', path: '/products/media-player' },
-    { name: 'Lynx Cloud', path: '/products/lynx-cloud' },
-    { name: 'Lynx AI', path: '/products/lynx-ai' },
+    { name: 'TETRA Cloud', path: '/products/tetra-cloud' },
+    { name: 'TETRA AI', path: '/products/tetra-ai' },
     { name: 'Core Banking', path: '/products/core-banking' },
   ];
 
@@ -48,30 +52,51 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: <Facebook className="h-5 w-5" />, url: 'https://facebook.com/lynx' },
-    { icon: <Twitter className="h-5 w-5" />, url: 'https://twitter.com/lynx' },
-    { icon: <Linkedin className="h-5 w-5" />, url: 'https://linkedin.com/company/lynx' },
-    { icon: <Instagram className="h-5 w-5" />, url: 'https://instagram.com/lynx' },
-    { icon: <Youtube className="h-5 w-5" />, url: 'https://youtube.com/lynx' },
-    { icon: <Github className="h-5 w-5" />, url: 'https://github.com/lynx' },
+    { icon: <Facebook className="h-5 w-5" />, url: 'https://facebook.com/tetracode' },
+    { icon: <Twitter className="h-5 w-5" />, url: 'https://twitter.com/tetracode' },
+    { icon: <Linkedin className="h-5 w-5" />, url: 'https://linkedin.com/company/tetracode' },
+    { icon: <Instagram className="h-5 w-5" />, url: 'https://instagram.com/tetracode' },
+    { icon: <Youtube className="h-5 w-5" />, url: 'https://youtube.com/tetracode' },
+    { icon: <Github className="h-5 w-5" />, url: 'https://github.com/tetracode' },
   ];
 
   const currentYear = new Date().getFullYear();
 
+  // Function to render navigation links with consistent styling
+  const renderNavLinks = (items: { name: string; path: string }[]) => (
+    <ul className="space-y-3">
+      {items.map((item, index) => (
+        <li key={index}>
+          <Link
+            to={item.path}
+            className={`${
+              isDark 
+                ? 'text-gray-300 hover:text-blue-400' 
+                : 'text-gray-600 hover:text-blue-600'
+            } transition-colors text-sm`}
+          >
+            {item.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className={`${isDark ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'}`}>
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
           <div className="col-span-2 lg:col-span-1">
-            <div className="flex items-center mb-6">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">L</span>
-              </div>
-              <span className="ml-3 text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Lynx
-              </span>
+            <div className="mb-6">
+              <Link to="/" className="inline-block">
+                <img 
+                  src="/tetracode.png" 
+                  alt="TETRACODE" 
+                  className="h-32 w-auto transition-all duration-300 hover:opacity-90" 
+                />
+              </Link>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className={`${isDark ? 'text-gray-300' : 'text-gray-500'} text-sm mb-6`}>
               Empowering innovation through cutting-edge technology solutions across Africa and beyond.
             </p>
             <div className="flex space-x-4">
@@ -81,7 +106,11 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className={`${
+                    isDark 
+                      ? 'text-gray-400 hover:text-blue-400' 
+                      : 'text-gray-500 hover:text-blue-600'
+                  } transition-colors`}
                   aria-label={social.url.split('/')[2]}
                 >
                   {social.icon}
@@ -91,81 +120,49 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6">Products</h4>
-            <ul className="space-y-3">
-              {products.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to={item.path}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 className={`${isDark ? 'text-white' : 'text-gray-800'} font-semibold text-lg mb-6`}>
+              Products
+            </h4>
+            {renderNavLinks(products)}
           </div>
 
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6">Company</h4>
-            <ul className="space-y-3">
-              {company.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to={item.path}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 className={`${isDark ? 'text-white' : 'text-gray-800'} font-semibold text-lg mb-6`}>
+              Company
+            </h4>
+            {renderNavLinks(company)}
           </div>
 
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6">Resources</h4>
-            <ul className="space-y-3">
-              {resources.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to={item.path}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 className={`${isDark ? 'text-white' : 'text-gray-800'} font-semibold text-lg mb-6`}>
+              Resources
+            </h4>
+            {renderNavLinks(resources)}
           </div>
 
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6">Support</h4>
-            <ul className="space-y-3">
-              {support.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to={item.path}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 className={`${isDark ? 'text-white' : 'text-gray-800'} font-semibold text-lg mb-6`}>
+              Support
+            </h4>
+            {renderNavLinks(support)}
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8">
+        <div className={`border-t ${isDark ? 'border-gray-800' : 'border-gray-200'} pt-8`}>
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-500 text-sm">
-              © {currentYear} Lynx Technologies. All rights reserved.
+            <div className={`${isDark ? 'text-gray-400' : 'text-gray-500'} text-sm`}>
+              {currentYear} TETRACODE Technologies. All rights reserved.
             </div>
-            <div className="flex flex-wrap justify-center gap-4 text-gray-500 text-sm">
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
               {legal.map((item, index) => (
                 <Link
                   key={index}
                   to={item.path}
-                  className="hover:text-white transition-colors"
+                  className={`${
+                    isDark 
+                      ? 'text-gray-400 hover:text-blue-400' 
+                      : 'text-gray-500 hover:text-blue-600'
+                  } transition-colors`}
                 >
                   {item.name}
                 </Link>
