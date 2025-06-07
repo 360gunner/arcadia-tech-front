@@ -103,9 +103,9 @@ const App = () => (
                 <Route path="status" element={<Status />} />
 
                 {/* Legacy routes - redirect to new structure */}
-                <Route path="/banking" element={<Navigate to="/products/core-banking" replace />} />
-                <Route path="/airlines" element={<Navigate to="/products/air-charter" replace />} />
-                <Route path="/tv-broadcasting" element={<Navigate to="/products/lynx-tv" replace />} />
+                <Route path="/banking" element={<Navigate to="/products/core-banking\" replace />} />
+                <Route path="/airlines" element={<Navigate to="/products/air-charter\" replace />} />
+                <Route path="/tv-broadcasting" element={<Navigate to="/products/lynx-tv\" replace />} />
 
                 {/* 404 - Keep this last */}
                 <Route path="*" element={<NotFound />} />
