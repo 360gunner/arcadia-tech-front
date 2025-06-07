@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import { useEffect } from 'react';
 
 // Layouts
@@ -58,71 +59,65 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route element={<MainLayout />}>
-                {/* Main Pages */}
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/products" element={<Products />}>
-                  <Route path="tetra-tv" element={<TetraTv />} />
-                  <Route path="tetra-radio" element={<TetraRadio />} />
-                  <Route path="media-player" element={<MediaPlayer />} />
-                  <Route path="tetra-meet" element={<TetraMeet />} />
-                  <Route path="tetra-mail" element={<TetraMail />} />
-                  <Route path="tetra-ai" element={<TetraAi />} />
-                </Route>
-                <Route path="/developers" element={<Developers />} />
-                <Route path="/partners" element={<Partners />} />
-                <Route path="/support" element={<Support />}>
+      <ThemeProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={<MainLayout />}>
+                  <Route index element={<Index />} />
+                  <Route path="about" element={<About />} />
+                  <Route path="contact" element={<Contact />} />
+                  <Route path="products" element={<Products />}>
+                    <Route path="tetra-tv" element={<TetraTv />} />
+                    <Route path="tetra-radio" element={<TetraRadio />} />
+                    <Route path="media-player" element={<MediaPlayer />} />
+                    <Route path="content-distribution" element={<DigitalContentDistribution />} />
+                    <Route path="creator-tools" element={<CreatorTools />} />
+                    <Route path="drone-services" element={<DroneServices />} />
+                    <Route path="flight-software" element={<FlightSoftware />} />
+                    <Route path="airport-tech" element={<AirportTech />} />
+                    <Route path="air-charter" element={<AirCharter />} />
+                    <Route path="tetra-meet" element={<TetraMeet />} />
+                    <Route path="office-suite" element={<OfficeSuite />} />
+                    <Route path="tetra-mail" element={<TetraMail />} />
+                    <Route path="task-manager" element={<TaskManager />} />
+                    <Route path="mobix" element={<Mobix />} />
+                    <Route path="core-banking" element={<CoreBanking />} />
+                    <Route path="tetra-cloud" element={<TetraCloud />} />
+                    <Route path="cdn" element={<CdnServices />} />
+                    <Route path="cloud-gaming" element={<CloudGaming />} />
+                    <Route path="gaming-hub" element={<GamingHub />} />
+                    <Route path="game-dev-tools" element={<GameDevTools />} />
+                    <Route path="tetra-ai" element={<TetraAi />} />
+                    <Route path="chatbot" element={<ChatbotPlatform />} />
+                    <Route path="voice-apis" element={<VoiceApis />} />
+                    <Route path="app-store" element={<AppStore />} />
+                    <Route path="developer-sdks" element={<DeveloperSdks />} />
+                  </Route>
+                  <Route path="solutions" element={<Solutions />} />
+                  <Route path="developers" element={<Developers />} />
+                  <Route path="partners" element={<Partners />} />
+                  <Route path="support" element={<Support />}>
+                    <Route path="status" element={<Status />} />
+                  </Route>
                   <Route path="status" element={<Status />} />
+
+                  {/* Legacy routes - redirect to new structure */}
+                  <Route path="/banking" element={<Navigate to="/products/core-banking" replace />} />
+                  <Route path="/airlines" element={<Navigate to="/products/air-charter" replace />} />
+                  <Route path="/tv-broadcasting" element={<Navigate to="/products/lynx-tv" replace />} />
+
+                  {/* 404 - Keep this last */}
+                  <Route path="*" element={<NotFound />} />
                 </Route>
-                <Route path="/status" element={<Status />} />
-
-                {/* Product Pages */}
-                <Route path="/products/tetra-tv" element={<TetraTv />} />
-                <Route path="/products/tetra-radio" element={<TetraRadio />} />
-                <Route path="/products/media-player" element={<MediaPlayer />} />
-                <Route path="/products/content-distribution" element={<DigitalContentDistribution />} />
-                <Route path="/products/creator-tools" element={<CreatorTools />} />
-                <Route path="/products/drone-services" element={<DroneServices />} />
-                <Route path="/products/flight-software" element={<FlightSoftware />} />
-                <Route path="/products/airport-tech" element={<AirportTech />} />
-                <Route path="/products/air-charter" element={<AirCharter />} />
-                <Route path="/products/tetra-meet" element={<TetraMeet />} />
-                <Route path="/products/office-suite" element={<OfficeSuite />} />
-                <Route path="/products/tetra-mail" element={<TetraMail />} />
-                <Route path="/products/task-manager" element={<TaskManager />} />
-                <Route path="/products/mobix" element={<Mobix />} />
-                <Route path="/products/core-banking" element={<CoreBanking />} />
-                <Route path="/products/tetra-cloud" element={<TetraCloud />} />
-                <Route path="/products/cdn" element={<CdnServices />} />
-                <Route path="/products/cloud-gaming" element={<CloudGaming />} />
-                <Route path="/products/gaming-hub" element={<GamingHub />} />
-                <Route path="/products/game-dev-tools" element={<GameDevTools />} />
-                <Route path="/products/tetra-ai" element={<TetraAi />} />
-                <Route path="/products/chatbot" element={<ChatbotPlatform />} />
-                <Route path="/products/voice-apis" element={<VoiceApis />} />
-                <Route path="/products/app-store" element={<AppStore />} />
-                <Route path="/products/developer-sdks" element={<DeveloperSdks />} />
-
-                {/* Legacy routes - redirect to new structure */}
-                <Route path="/banking" element={<Navigate to="/products/core-banking" replace />} />
-                <Route path="/airlines" element={<Navigate to="/products/air-charter" replace />} />
-                <Route path="/tv-broadcasting" element={<Navigate to="/products/lynx-tv" replace />} />
-
-                {/* 404 - Keep this last */}
-                <Route path="*" element={<NotFound />} />
-              </Route>
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </TooltipProvider>
+      </ThemeProvider>
     </LanguageProvider>
   </QueryClientProvider>
 );
