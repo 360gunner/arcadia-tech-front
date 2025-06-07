@@ -31,11 +31,11 @@ const navItems: NavItem[] = [
         name: '📺 Broadcasting & Media', 
         path: '/products/broadcasting-media',
         subItems: [
-          { name: 'TETRACODE TV (Live + On-demand)', path: '/products/tv' },
-          { name: 'TETRACODE Radio', path: '/products/radio' },
+          { name: 'TETRACODE TV (Live + On-demand)', path: '/products/tetra-tv' },
+          { name: 'TETRACODE Radio', path: '/products/tetra-radio' },
           { name: 'Media Player (Cross-platform)', path: '/products/media-player' },
           { name: 'Digital Content Distribution', path: '/products/content-distribution' },
-          { name: 'Creator Monetization Tools', path: '/products/monetization-tools' }
+          { name: 'Creator Monetization Tools', path: '/products/creator-tools' }
         ]
       },
       { 
@@ -52,9 +52,9 @@ const navItems: NavItem[] = [
         name: '🧑‍💼 SaaS & Communication', 
         path: '/products/saas',
         subItems: [
-          { name: 'TETRACODE Meet (Google Meet Alternative)', path: '/products/meet' },
-          { name: 'TETRACODE Office Suite (Docs, Sheets, etc.)', path: '/products/office' },
-          { name: 'TETRACODE Mail (Secure Email)', path: '/products/mail' },
+          { name: 'TETRACODE Meet (Google Meet Alternative)', path: '/products/tetra-meet' },
+          { name: 'TETRACODE Office Suite (Docs, Sheets, etc.)', path: '/products/office-suite' },
+          { name: 'TETRACODE Mail (Secure Email)', path: '/products/tetra-mail' },
           { name: 'Task & Project Manager', path: '/products/task-manager' }
         ]
       },
@@ -72,7 +72,7 @@ const navItems: NavItem[] = [
         subItems: [
           { 
             name: 'TETRACODE Cloud (IaaS/PaaS) EC2', 
-            path: '/products/cloud/iaas',
+            path: '/products/tetra-cloud',
             subItems: [
               { name: 'Web Hosting', path: '/products/cloud/web-hosting' },
               { name: 'Cloud Storage EB5', path: '/products/cloud/storage' }
@@ -96,14 +96,14 @@ const navItems: NavItem[] = [
         subItems: [
           { 
             name: 'TETRACODE AI (Cloud AI Services)', 
-            path: '/products/ai/cloud',
+            path: '/products/tetra-ai',
             subItems: [
               { name: 'Machine Learning APIs', path: '/products/ai/ml-apis' },
               { name: 'Text & Image Recognition', path: '/products/ai/recognition' }
             ]
           },
-          { name: 'Chatbot Platform', path: '/products/ai/chatbot' },
-          { name: 'Voice + Translation APIs', path: '/products/ai/voice-translation' }
+          { name: 'Chatbot Platform', path: '/products/chatbot' },
+          { name: 'Voice + Translation APIs', path: '/products/voice-apis' }
         ]
       },
       { 
@@ -161,6 +161,7 @@ const NavItem: React.FC<{
   const [isHovered, setIsHovered] = useState(false);
   const hasSubItems = item.subItems && item.subItems.length > 0;
   const itemRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -172,22 +173,56 @@ const NavItem: React.FC<{
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
   }, []);
+
+  const handleMouseEnter = () => {
+    if (!isMobile && hasSubItems) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile && hasSubItems) {
+      timeoutRef.current = setTimeout(() => {
+        setIsHovered(false);
+      }, 150); // Small delay to allow moving to submenu
+    }
+  };
+
+  const handleSubmenuMouseEnter = () => {
+    if (!isMobile && timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  const handleSubmenuMouseLeave = () => {
+    if (!isMobile) {
+      timeoutRef.current = setTimeout(() => {
+        setIsHovered(false);
+      }, 150);
+    }
+  };
 
   return (
     <div className="relative" ref={itemRef}>
       <div 
         className={`flex items-center ${hasSubItems ? 'cursor-default' : ''}`}
-        onMouseEnter={() => !isMobile && setIsHovered(true)}
-        onMouseLeave={() => !isMobile && setIsHovered(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <Link
           to={item.path}
-          className={`px-4 py-2 rounded-md text-sm font-medium flex items-center ${
+          className={`px-4 py-2 rounded-md text-sm font-medium flex items-center transition-all duration-200 ${
             isActive
-              ? 'bg-blue-600 text-white'
-              : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:shadow-md'
           }`}
           onClick={() => {
             onClick();
@@ -205,18 +240,18 @@ const NavItem: React.FC<{
       
       {hasSubItems && (isHovered || isMobile) && (
         <div 
-          className={`absolute left-0 mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 ${
-            isMobile ? 'relative w-full mt-0 ml-4' : 'py-1'
+          className={`absolute left-0 mt-1 w-72 rounded-xl shadow-2xl bg-white ring-1 ring-black ring-opacity-5 z-50 border border-gray-100 ${
+            isMobile ? 'relative w-full mt-0 ml-4' : 'py-2'
           }`}
-          onMouseEnter={() => !isMobile && setIsHovered(true)}
-          onMouseLeave={() => !isMobile && setIsHovered(false)}
+          onMouseEnter={handleSubmenuMouseEnter}
+          onMouseLeave={handleSubmenuMouseLeave}
         >
           <div className="py-1">
             {item.subItems?.map((subItem, index) => (
               <Link
                 key={index}
                 to={subItem.path}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                className="block px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 transition-all duration-200 mx-2 rounded-lg"
                 onClick={() => {
                   onClick();
                   setIsHovered(false);
@@ -257,6 +292,7 @@ const MobileMenu: React.FC<{
               onClose();
             }}
             t={t}
+            isMobile={true}
           />
         ))}
         <div className="px-3 py-2">
@@ -322,16 +358,16 @@ const Header: React.FC<HeaderProps> = ({ theme, onThemeToggle }) => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-md' : 'bg-white md:bg-opacity-90'
+      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' : 'bg-white/90 backdrop-blur-sm'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center group">
               <img 
                 src={tetracodeLogo} 
                 alt="TETRACODE" 
-                className="h-28 w-auto transition-all duration-300 hover:opacity-90" 
+                className="h-28 w-auto transition-all duration-300 group-hover:scale-105" 
               />
             </Link>
           </div>
@@ -347,11 +383,11 @@ const Header: React.FC<HeaderProps> = ({ theme, onThemeToggle }) => {
                 t={t}
               />
             ))}
-            <div className="ml-4">
+            <div className="ml-4 flex items-center space-x-2">
               <LanguageSelector />
               <button
                 onClick={onThemeToggle}
-                className="hidden p-2 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="hidden p-2 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
                 aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               >
                 {theme === 'dark' ? (
@@ -367,7 +403,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onThemeToggle }) => {
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMobileMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none transition-all duration-200"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
